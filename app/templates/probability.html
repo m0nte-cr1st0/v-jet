@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>v-jet</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+{% block content %}
+    <h1>Calculate</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.year_days.label }}<br>
+            {{ form.year_days() }}<br>
+            {% for error in form.year_days.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.peoples_count.label }}<br>
+            {{ form.peoples_count() }}<br>
+            {% for error in form.peoples_count.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.days_range.label }}<br>
+            {{ form.days_range() }}<br>
+            {% for error in form.days_range.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
+</body>
+</html>
